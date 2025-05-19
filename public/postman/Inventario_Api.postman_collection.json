@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "7e7b8853-07bd-469a-8e7e-34d8311c5a0a",
+		"name": "Inventario_Api",
+		"description": "La API está estructurada en módulos para productos, usuarios, categorías, y control de sesión (login/logout), todos protegidos mediante autenticación con tokens Bearer para garantizar la seguridad del acceso y la manipulación de datos en el sistema de inventario.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31733978"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "getProducts",
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": true,
+						"followAuthorizationHeader": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/products",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Licuadora Mega Force",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Super licuadora con mucha potencia",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "500000",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "1000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/products",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ventilador multifuncional\",\r\n  \"description\": \"Este ventilador tiene potencia para los días calurosos\",\r\n  \"price\": 50000,\r\n  \"stock\": 24,\r\n  \"category_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/products/2",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/products/3",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Esta carpeta agrupa los endpoints relacionados con la gestión de productos en el inventario.\n\n- **getProducts:** Obtiene la lista de todos los productos disponibles.\n    \n- **createProduct:** Crea un nuevo producto, enviando datos como nombre, descripción, categoría, precio y stock.\n    \n- **editProduct:** Actualiza un producto específico identificado por su ID, permitiendo modificar sus atributos.\n    \n- **deleteProduct:** Elimina un producto específico del inventario por su ID.\n    \n\nTodas las operaciones requieren autenticación mediante token Bearer."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "validateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/user",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/users",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Prueba 3\",\r\n  \"email\": \"prueba2@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"rol\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/users/2",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/users/2",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Agrupa endpoints para la administración y validación de usuarios del sistema.\n\n- **validateUser:** Obtiene información del usuario autenticado actualmente, validando el token.\n    \n- **getUsers:** Recupera la lista de todos los usuarios registrados.\n    \n- **editUser:** Permite actualizar los datos de un usuario específico (nombre, email, contraseña, rol).\n    \n- **deleteUser:** Elimina un usuario específico por su ID.\n    \n\nTambién requieren token Bearer para acceso."
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "getCategories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/category",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Licuadoras",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Productos totalemente nuevos e innovadores",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/category",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Hogar 2.0\",\r\n  \"description\": \"Nuevas funcionalidades, para la nueva era\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/category/1",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://gestion-inventario-api.up.railway.app/api/category/1",
+							"protocol": "https",
+							"host": [
+								"gestion-inventario-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Contiene las operaciones relacionadas con las categorías de productos.\n\n- **getCategories:** Obtiene la lista de todas las categorías disponibles.\n    \n- **createCategory:** Crea una nueva categoría con nombre y descripción.\n    \n- **editCategory:** Modifica una categoría existente por su ID.\n    \n- **deleteCategory:** Elimina una categoría específica por su ID.\n    \n\nLa autenticación también es requerida para estas acciones."
+		},
+		{
+			"name": "createUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Prueba 2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "prueba@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "rol",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://gestion-inventario-api.up.railway.app/api/register",
+					"protocol": "https",
+					"host": [
+						"gestion-inventario-api",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const res = pm.response.json();\r",
+							"pm.environment.set(\"bearer_token\", res.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://gestion-inventario-api.up.railway.app/api/login",
+					"protocol": "https",
+					"host": [
+						"gestion-inventario-api",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://gestion-inventario-api.up.railway.app/api/logout",
+					"protocol": "https",
+					"host": [
+						"gestion-inventario-api",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
