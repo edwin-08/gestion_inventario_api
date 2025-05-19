@@ -4,7 +4,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\CategoryModel;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 
-class categoryRepository implements CategoryRepositoryInterface
+class CategoryRepository implements CategoryRepositoryInterface
 {
 
     public function all()
