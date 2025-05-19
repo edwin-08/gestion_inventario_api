@@ -16,10 +16,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/categories', [CategoryController::class, 'index']);
 
     Route::middleware('role:admin')->group(function () {
         Route::apiResource('users', UserController::class);
-        Route::apiResource('categories', CategoryController::class);
+        Route::apiResource('category', CategoryController::class)->except(['index']);
         Route::apiResource('products', ProductController::class)->except(['index']);
     });
 });

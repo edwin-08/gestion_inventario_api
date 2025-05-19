@@ -11,25 +11,24 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
-    
+
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 'user'
         ]);
-    
-        //Mail::to('edwinbueno84@gmail.com')->send(new NewUserNotification($user));
-    
+
         return response()->json($user);
     }
-    
+
     public function login(Request $request)
     {
         $request->validate([
@@ -40,10 +39,27 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Credenciales inválidas'], 401);
+            return response()->json([
+                'message' => 'Credenciales inválidas',
+                'errors' => [
+                    'email' => ['Las credenciales proporcionadas no son correctas.']
+                ]
+            ], 401);
         }
-    
-        return response()->json(['user' => Auth::user()]);
+
+        $user = Auth::user();
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role
+            ]
+        ]);
     }
 
     public function user()
@@ -53,10 +69,10 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->user()->tokens()->delete();
 
-        return response()->json(['message' => 'Sesión cerrada']);
+        return response()->json([
+            'message' => 'Sesión cerrada correctamente.'
+        ]);
     }
 }
