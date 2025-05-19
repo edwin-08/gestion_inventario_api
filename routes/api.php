@@ -16,11 +16,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::get('/products', [ProductController::class, 'index']);
-    Route::get('/categories', [CategoryController::class, 'index']);
 
+    //Se crea un middleware para validar el rol del usuario que está realizando la petición
+    //Si es admin, se mostrará la información, editar o eliminar 
     Route::middleware('role:admin')->group(function () {
         Route::apiResource('users', UserController::class);
-        Route::apiResource('category', CategoryController::class)->except(['index']);
+        Route::apiResource('category', CategoryController::class);
         Route::apiResource('products', ProductController::class)->except(['index']);
     });
 });

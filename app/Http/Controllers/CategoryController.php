@@ -11,14 +11,17 @@ class CategoryController extends Controller
 {
     public function __construct(protected CategoryService $categoryService) {}
 
-    public function index(){
+    public function index()
+    {
         return CategoryResource::collection($this->categoryService->list());
     }
 
+    //Función Store ayuda en la creación de nuevas categorias, además,
+    // CategoryRequest valida los datos antes de crear la información
     public function store(CategoryRequest $request)
     {
-        $product = $this->categoryService->create($request->validated());
-        return new CategoryResource($product);
+        $this->categoryService->create($request->validated());
+        return response()->json(["status" => true, "message" => "La categoria se ha creado correctamente"]);
     }
 
     public function show($id)
@@ -28,13 +31,17 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-        $product = $this->categoryService->update($id, $request->validated());
-        return new CategoryResource($product);
+        $this->categoryService->update($id, $request->validated());
+        return response()->json(["status" => true, "message" => "La categoría se ha actualizado correctamente"]);
     }
 
     public function destroy($id)
     {
-        $this->categoryService->delete($id);
-        return response()->noContent();
+        try {
+            $this->categoryService->delete($id);
+            return response()->json(["status" => true, "message" => "La categoría se ha eliminado correctamente"]);
+        } catch (\Exception $e) {
+            return response()->json(["status" => false, "message" => "Hubo un problema al eliminar la categoría o no existe este ID"]);
+        }
     }
 }
