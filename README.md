@@ -46,16 +46,19 @@ php artisan key:generate
 5. **Migraciones y Seeders**
 Para crear las tablas necesarias y datos iniciales, ejecuta:
 
-php artisan migrate
-php artisan db:seed
+- php artisan migrate
+- php artisan db:seed
 
 6. **Ejecución del Proyecto**
 Para levantar el servidor local de desarrollo:
 
-php artisan serve
+- php artisan serve
 
 Por defecto, estará disponible en:
 http://localhost:8000
+
+
+---
 
 
 # Documentación de la API - Inventario_Api
@@ -70,12 +73,13 @@ El código fuente está desplegado en la siguiente dirección:
 
 https://gestion-inventario-api.up.railway.app/
 
+---
 
 
 ## Ubicación del archivo de configuración
 \public\postman\Inventario_Api.postman_collection.json
 
-
+---
 
 ## Configuración para usar un entorno (Environment) con variable {{bearer_token}}
 - En la esquina superior derecha de Postman haz clic en "Environments" (ícono de engranaje).
