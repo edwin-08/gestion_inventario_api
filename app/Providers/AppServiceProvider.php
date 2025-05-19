@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\Eloquent\categoryRepository;
+use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\ProductRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
