@@ -31,17 +31,17 @@ Repositorio: [https://github.com/edwin-08/gestion_inventario_api.git](https://gi
 ## Instalación y Configuración
 
 1. **Clonar el repositorio**
-git clone https://github.com/edwin-08/gestion_inventario_api.git
-cd gestion_inventario_api
+- git clone https://github.com/edwin-08/gestion_inventario_api.git
+- cd gestion_inventario_api
 
 2. **Instalar dependencias**
-composer install
+- composer install
 
 3. **Copiar archivo de configuración de entorno**
-cp .env.example .env
+- cp .env.example .env
 
 4. **Generar clave de aplicación**
-php artisan key:generate
+- php artisan key:generate
 
 5. **Migraciones y Seeders**
 Para crear las tablas necesarias y datos iniciales, ejecuta:
@@ -95,6 +95,20 @@ https://gestion-inventario-api.up.railway.app/
 
 
 ---
+
+
+## Configuración de script para actualizar la variable de entorno {{bearer_token}}
+En la url designada para la autenticación (Login), se configura un script para que se ejecute cada vez que reciba una respuesta válida y actualice automáticamente el bearer_token para las demás solicitudes.
+
+- En la sección de Scrips pegar la siguiente configuración:
+- const res = pm.response.json();
+- pm.environment.set("bearer_token", res.access_token);
+
+Con esta configuración el bearer_token se actualizará cada vez que se retorne una respuesta válida desde el backend y será visible para el resto de endpoints configurados.
+
+
+---
+
 
 ## Endpoints por Módulo
 
