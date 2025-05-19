@@ -154,7 +154,7 @@ https://gestion-inventario-api.up.railway.app/
 
 ## Ejemplo de llamada `curl` para login
 
-curl -X POST https://tu-api.com/api/login \
+curl -X POST https://gestion-inventario-api.up.railway.app/api/login \
 -H "Content-Type: application/json" \
 -d '{"email":"admin@gmail.com", "password":"12345678"}'
 
